@@ -9,6 +9,15 @@ public class ImpressoraBeans {
  private TecnicoBeans Tecnico;
  private int serialImp;
  private int os;
+ private MarcaImpressoraBeans marcaImp;
+ private ModeloImpressoraBeans modeloImp;
+ private String dataCompra;
+ private String dataEntrada;
+ private String dataFechamento;
+ private String dataSaida;
+ private String laudoTecnico;
+ 
+ 
 
     /**
      * @return the idImp
@@ -122,6 +131,104 @@ public class ImpressoraBeans {
      */
     public void setTecnico(TecnicoBeans Tecnico) {
         this.Tecnico = Tecnico;
+    }
+
+    /**
+     * @return the marcaImp
+     */
+    public MarcaImpressoraBeans getMarcaImp() {
+        return marcaImp;
+    }
+
+    /**
+     * @param marcaImp the marcaImp to set
+     */
+    public void setMarcaImp(MarcaImpressoraBeans marcaImp) {
+        this.marcaImp = marcaImp;
+    }
+
+    /**
+     * @return the modeloImp
+     */
+    public ModeloImpressoraBeans getModeloImp() {
+        return modeloImp;
+    }
+
+    /**
+     * @param modeloImp the modeloImp to set
+     */
+    public void setModeloImp(ModeloImpressoraBeans modeloImp) {
+        this.modeloImp = modeloImp;
+    }
+
+    /**
+     * @return the dataCompra
+     */
+    public String getDataCompra() {
+        return dataCompra;
+    }
+
+    /**
+     * @param dataCompra the dataCompra to set
+     */
+    public void setDataCompra(String dataCompra) {
+        this.dataCompra = dataCompra;
+    }
+
+    /**
+     * @return the dataEntrada
+     */
+    public String getDataEntrada() {
+        return dataEntrada;
+    }
+
+    /**
+     * @param dataEntrada the dataEntrada to set
+     */
+    public void setDataEntrada(String dataEntrada) {
+        this.dataEntrada = dataEntrada;
+    }
+
+    /**
+     * @return the dataFechamento
+     */
+    public String getDataFechamento() {
+        return dataFechamento;
+    }
+
+    /**
+     * @param dataFechamento the dataFechamento to set
+     */
+    public void setDataFechamento(String dataFechamento) {
+        this.dataFechamento = dataFechamento;
+    }
+
+    /**
+     * @return the dataSaida
+     */
+    public String getDataSaida() {
+        return dataSaida;
+    }
+
+    /**
+     * @param dataSaida the dataSaida to set
+     */
+    public void setDataSaida(String dataSaida) {
+        this.dataSaida = dataSaida;
+    }
+
+    /**
+     * @return the laudoTecnico
+     */
+    public String getLaudoTecnico() {
+        return laudoTecnico;
+    }
+
+    /**
+     * @param laudoTecnico the laudoTecnico to set
+     */
+    public void setLaudoTecnico(String laudoTecnico) {
+        this.laudoTecnico = laudoTecnico;
     }
     
     
