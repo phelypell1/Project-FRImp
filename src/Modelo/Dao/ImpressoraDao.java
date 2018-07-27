@@ -25,7 +25,7 @@ public class ImpressoraDao {
         PreparedStatement stmt = null;
 
         try {
-            stmt = con.prepareStatement("insert into (numPat, numSut, serialImp, dataEnvio, obsDef, tecnicoId, OS, marcaId,modeloId, dataCompraImp, dataEntrada,dataFechamento, dataSaida,laudoTec) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            stmt = con.prepareStatement("insert into Impressoras(numPat, numSut, serialImp, dataEnvio, obsDef, tecnicoId, OS, marcaId,modeloId, dataCompraImp, dataEntrada,dataFechamento, dataSaida,laudoTec) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             stmt.setInt(1, imp.getNumPat());
             stmt.setInt(2, imp.getNumSut());
             stmt.setInt(3, imp.getSerialImp());
@@ -33,9 +33,9 @@ public class ImpressoraDao {
             stmt.setString(5, imp.getObsDefeito());
             stmt.setInt(6, imp.getTecnico().getIdTec());
             stmt.setInt(7, imp.getOs());
-            stmt.setString(8, imp.getDataCompra());
-            stmt.setInt(9, imp.getMarcaImp().getIdMarca());
-            stmt.setInt(10, imp.getModeloImp().getIdModelo());
+            stmt.setInt(8, imp.getMarcaImp().getIdMarca());
+            stmt.setInt(9, imp.getModeloImp().getIdModelo());
+            stmt.setString(10, imp.getDataCompra());
             stmt.setString(11, imp.getDataEntrada());
             stmt.setString(12, imp.getDataFechamento());
             stmt.setString(13, imp.getDataSaida());
@@ -80,15 +80,13 @@ public class ImpressoraDao {
                 imp.setTecnico(tec);
                 //imp.setTecnico((TecnicoBeans) rs.getArray("nomeTec"));
                 //imp.setOs(rs.getInt("OS"));
-                
+                //Serve para pegar o id e salvar na chave estrangeira
                 MarcaImpressoraBeans impMarca = new MarcaImpressoraBeans();
                 impMarca.setNomeMarca(rs.getString("marca"));
-                imp.setIdImp(0);
                 imp.setMarcaImp(impMarca);
-                
+                //Serve para pegar o id e salvar na chave estrangeira
                 ModeloImpressoraBeans impModel = new ModeloImpressoraBeans();
                 impModel.setNomeModelo(rs.getString("nomeModelo"));
-                impModel.setIdModelo(rs.getInt("idModelo"));
                 imp.setModeloImp(impModel);
                 
                 imps.add(imp);
