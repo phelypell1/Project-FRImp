@@ -106,7 +106,7 @@ public class ImpressoraDao {
         PreparedStatement stmt = null;
 
         try {
-            stmt = con.prepareStatement("update Impressoras set numPat =?, numSut =?, serialImp=?, dataEnvio=?, obsDef=?, tecnicoid=?, OS=? where idImp = ?");
+            stmt = con.prepareStatement("update Impressoras set numPat =?, numSut =?, serialImp=?, dataEnvio=?, obsDef=?, tecnicoid=?, OS=?, marcaid=?, modeloId=?, dataCompraImp=?, dataEntrada=?, dataFechamento =?, dataSaida =?, laudoTec=? where idImp = ?");
             stmt.setInt(1, imp.getNumPat());
             stmt.setInt(2, imp.getNumSut());
             stmt.setInt(3, imp.getSerialImp());
@@ -114,7 +114,14 @@ public class ImpressoraDao {
             stmt.setString(5, imp.getObsDefeito());
             stmt.setInt(6, imp.getTecnico().getIdTec());
             stmt.setInt(7, imp.getOs());
-            stmt.setInt(8,imp.getIdImp());
+            stmt.setInt(8, imp.getMarcaImp().getIdMarca());
+            stmt.setInt(9, imp.getModeloImp().getIdModelo());
+            stmt.setString(10, imp.getDataCompra());
+            stmt.setString(11, imp.getDataEntrada());
+            stmt.setString(12, imp.getDataFechamento());
+            stmt.setString(13, imp.getDataSaida());
+            stmt.setString(14, imp.getLaudoTecnico());
+            stmt.setInt(15,imp.getIdImp());
             stmt.executeUpdate();
 
             JOptionPane.showMessageDialog(null, "Atulizado com sucesso !");
