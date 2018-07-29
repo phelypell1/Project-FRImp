@@ -16,6 +16,8 @@ public class ImpressoraBeans {
  private String dataFechamento;
  private String dataSaida;
  private String laudoTecnico;
+ private String Busca;
+ 
  
  
 
@@ -229,6 +231,20 @@ public class ImpressoraBeans {
      */
     public void setLaudoTecnico(String laudoTecnico) {
         this.laudoTecnico = laudoTecnico;
+    }
+
+    /**
+     * @return the Busca
+     */
+    public String getBusca() {
+        return Busca;
+    }
+
+    /**
+     * @param Busca the Busca to set
+     */
+    public void setBusca(String Busca) {
+        this.Busca = Busca;
     }
     
     
