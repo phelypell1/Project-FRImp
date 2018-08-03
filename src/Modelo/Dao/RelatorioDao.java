@@ -3,7 +3,6 @@ package Modelo.Dao;
 
 import Connection.ConnectionFactory;
 import Modelo.Beans.ImpressoraBeans;
-import Modelo.Beans.RelatorioBeans;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -34,6 +33,7 @@ public class RelatorioDao {
                 ImpressoraBeans imp = new ImpressoraBeans();
                 
                 imp.setIdImp(rs.getInt("idImp"));
+                imp.setOs(rs.getString("OS"));
                 imp.setNumPat(rs.getInt("numPat"));
                 imp.setDataEnvio(rs.getString("dataEnvio"));
                 imp.setDataEntrada(rs.getString("dataEntrada"));
@@ -54,31 +54,44 @@ public class RelatorioDao {
         return imps;
 
     }
-    public RelatorioBeans BuscaOS(RelatorioBeans rel){
+    public List<ImpressoraBeans> ReadBuscaOS(String busca) {
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
         
+        List<ImpressoraBeans> imps = new ArrayList<>();
+        
+        
         try {
-            con.prepareStatement("select * from Impressoras where OS like%'"+rel.getBusca()+"%'");
-            RelatorioBeans imp = new RelatorioBeans();
+            //stmt = con.prepareStatement("select * from Impressoras ");
+            stmt = con.prepareStatement("select * from Impressoras where OS = ?");
+            rs = stmt.executeQuery();
+            
+            while(rs.next()){
+                
+                ImpressoraBeans imp = new ImpressoraBeans();
                 
                 imp.setIdImp(rs.getInt("idImp"));
+                imp.setOs(rs.getString("OS"));
                 imp.setNumPat(rs.getInt("numPat"));
                 imp.setDataEnvio(rs.getString("dataEnvio"));
                 imp.setDataEntrada(rs.getString("dataEntrada"));
                 imp.setDataFechamento(rs.getString("dataFechamento"));
                 imp.setDataSaida(rs.getString("dataSaida"));
-                imp.setDefeito(rs.getString("obsDef"));
-                imp.setLautoTec(rs.getString("laudoTec"));
+                imp.setObsDefeito(rs.getString("obsDef"));
+                imp.setLaudoTecnico(rs.getString("laudoTec"));
                 
+                imps.add(imp);
+            }
             
         } catch (SQLException ex) {
-           JOptionPane.showMessageDialog(null, "Erro: " +ex);
+           JOptionPane.showMessageDialog(null, "ERRO " +ex.getMessage());
         }
         finally{
             ConnectionFactory.CloseConection(con, stmt, rs);
         }
-        return rel;
+        return imps;
+
     }
+    
 }

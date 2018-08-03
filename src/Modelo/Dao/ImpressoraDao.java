@@ -28,11 +28,11 @@ public class ImpressoraDao {
             stmt = con.prepareStatement("insert into Impressoras(numPat, numSut, serialImp, dataEnvio, obsDef, tecnicoId, OS, marcaId,modeloId, dataCompraImp, dataEntrada,dataFechamento, dataSaida,laudoTec) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             stmt.setInt(1, imp.getNumPat());
             stmt.setInt(2, imp.getNumSut());
-            stmt.setInt(3, imp.getSerialImp());
+            stmt.setString(3, imp.getSerialImp());
             stmt.setString(4, imp.getDataEnvio());
             stmt.setString(5, imp.getObsDefeito());
             stmt.setInt(6, imp.getTecnico().getIdTec());
-            stmt.setInt(7, imp.getOs());
+            stmt.setString(7, imp.getOs());
             stmt.setInt(8, imp.getMarcaImp().getIdMarca());
             stmt.setInt(9, imp.getModeloImp().getIdModelo());
             stmt.setString(10, imp.getDataCompra());
@@ -71,7 +71,7 @@ public class ImpressoraDao {
                 imp.setIdImp(rs.getInt("idImp"));
                 imp.setNumPat(rs.getInt("numPat"));
                 imp.setNumSut(rs.getInt("numSut"));
-                imp.setSerialImp(rs.getInt("serialImp"));
+                imp.setSerialImp(rs.getString("serialImp"));
                 imp.setDataEnvio(rs.getString("dataEnvio"));
                 imp.setObsDefeito(rs.getString("obsDef"));
                 
@@ -109,11 +109,11 @@ public class ImpressoraDao {
             stmt = con.prepareStatement("update Impressoras set numPat =?, numSut =?, serialImp=?, dataEnvio=?, obsDef=?, tecnicoid=?, OS=?, marcaid=?, modeloId=?, dataCompraImp=?, dataEntrada=?, dataFechamento =?, dataSaida =?, laudoTec=? where idImp = ?");
             stmt.setInt(1, imp.getNumPat());
             stmt.setInt(2, imp.getNumSut());
-            stmt.setInt(3, imp.getSerialImp());
+            stmt.setString(3, imp.getSerialImp());
             stmt.setString(4, imp.getDataEnvio());
             stmt.setString(5, imp.getObsDefeito());
             stmt.setInt(6, imp.getTecnico().getIdTec());
-            stmt.setInt(7, imp.getOs());
+            stmt.setString(7, imp.getOs());
             stmt.setInt(8, imp.getMarcaImp().getIdMarca());
             stmt.setInt(9, imp.getModeloImp().getIdModelo());
             stmt.setString(10, imp.getDataCompra());

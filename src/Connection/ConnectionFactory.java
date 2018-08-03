@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 public class ConnectionFactory {
 
     private static final String DRIVER = "com.mysql.jdbc.Driver";
-    private static final String URL = "jdbc:mysql://127.0.0.1:3306/FrIncorp";
+    private static final String URL = "jdbc:mysql://127.0.0.1:3306/BancoDadosFr";
     private static final String USER = "root";
     private static final String PASS = "Fw38q1V7sN";
 

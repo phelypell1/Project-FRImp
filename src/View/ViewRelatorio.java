@@ -153,12 +153,8 @@ public class ViewRelatorio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-            RelatorioBeans rel = new RelatorioBeans();
-            RelatorioDao relD = new RelatorioDao();
+           
             
-            
-            rel.setBusca(jTextOrderService.getText());
-            relD.BuscaOS(rel);
             
         
     }//GEN-LAST:event_jButton2ActionPerformed

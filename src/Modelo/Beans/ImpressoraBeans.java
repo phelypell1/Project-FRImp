@@ -7,8 +7,8 @@ public class ImpressoraBeans {
  private String dataEnvio;
  private String obsDefeito;
  private TecnicoBeans Tecnico;
- private int serialImp;
- private int os;
+ private String serialImp;
+ private String os;
  private MarcaImpressoraBeans marcaImp;
  private ModeloImpressoraBeans modeloImp;
  private String dataCompra;
@@ -80,27 +80,27 @@ public class ImpressoraBeans {
     /**
      * @return the serialImp
      */
-    public int getSerialImp() {
+    public String getSerialImp() {
         return serialImp;
     }
 
     /**
      * @param serialImp the serialImp to set
      */
-    public void setSerialImp(int serialImp) {
+    public void setSerialImp(String serialImp) {
         this.serialImp = serialImp;
     }
     /**
      * @return the os
      */
-    public int getOs() {
+    public String getOs() {
         return os;
     }
 
     /**
      * @param os the os to set
      */
-    public void setOs(int os) {
+    public void setOs(String os) {
         this.os = os;
     }
 
@@ -246,8 +246,4 @@ public class ImpressoraBeans {
     public void setBusca(String Busca) {
         this.Busca = Busca;
     }
-    
-    
-    
- 
 }
