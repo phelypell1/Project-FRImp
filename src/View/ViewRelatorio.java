@@ -6,8 +6,6 @@
 package View;
 
 import Modelo.Beans.ImpressoraBeans;
-import Modelo.Beans.RelatorioBeans;
-import Modelo.Dao.ImpressoraDao;
 import Modelo.Dao.RelatorioDao;
 import javax.swing.table.DefaultTableModel;
 
@@ -46,6 +44,27 @@ public class ViewRelatorio extends javax.swing.JFrame {
             });
         }
         
+    }
+    public void ReadBusca(String busc){
+        
+        DefaultTableModel modelo = (DefaultTableModel) jTableBusca.getModel();
+        RelatorioDao relatorio = new RelatorioDao();
+        modelo.setNumRows(0);
+        
+        for(ImpressoraBeans relat: relatorio.ReadBuscaOS(busc)){
+            modelo.addRow(new Object[]{
+                relat.getIdImp(),
+                relat.getOs(),
+                relat.getNumPat(),
+                relat.getDataEnvio(),
+                relat.getDataEntrada(),
+                relat.getDataFechamento(),
+                relat.getDataSaida(),
+                relat.getObsDefeito(),
+                relat.getLaudoTecnico(),
+                
+            });
+        }
         
     }
     
@@ -61,7 +80,7 @@ public class ViewRelatorio extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jTextOrderService = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        jButtonBusca = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableBusca = new javax.swing.JTable();
 
@@ -72,10 +91,10 @@ public class ViewRelatorio extends javax.swing.JFrame {
 
         jLabel1.setText("Ordem Serviço");
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/folder/lupa25x25.png"))); // NOI18N
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonBusca.setText("Buscar");
+        jButtonBusca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonBuscaActionPerformed(evt);
             }
         });
 
@@ -84,7 +103,7 @@ public class ViewRelatorio extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Cod", "Os Serviço", "Patrimonio", "Data Envio", "Data Entrada", "Data Fechamento", "Saida", "Defeito", "Laudo Tecnico"
+                "Cod", "Os Serviço", "Patrimônio", "Data Envio", "Data Entrada", "Data Fechamento", "Saída", "Defeito", "Laudo Técnico"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -104,13 +123,13 @@ public class ViewRelatorio extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 907, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 904, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jTextOrderService))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonBusca)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -125,7 +144,7 @@ public class ViewRelatorio extends javax.swing.JFrame {
                         .addComponent(jTextOrderService, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButtonBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -152,12 +171,12 @@ public class ViewRelatorio extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-           
+    private void jButtonBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscaActionPerformed
+         ReadBusca(jTextOrderService.getText());
             
             
         
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jButtonBuscaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -195,7 +214,7 @@ public class ViewRelatorio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButtonBusca;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

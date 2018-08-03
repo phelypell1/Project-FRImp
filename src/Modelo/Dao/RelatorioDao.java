@@ -63,8 +63,9 @@ public class RelatorioDao {
         
         
         try {
-            //stmt = con.prepareStatement("select * from Impressoras ");
-            stmt = con.prepareStatement("select * from Impressoras where OS = ?");
+            
+            stmt = con.prepareStatement("select * from Impressoras where OS like ?");
+            stmt.setString(1, "%"+busca+"%");
             rs = stmt.executeQuery();
             
             while(rs.next()){
@@ -85,7 +86,7 @@ public class RelatorioDao {
             }
             
         } catch (SQLException ex) {
-           JOptionPane.showMessageDialog(null, "ERRO " +ex.getMessage());
+           JOptionPane.showMessageDialog(null, "Erro no RelatorioDao Método ReadBuscaOS\n " +ex.getMessage());
         }
         finally{
             ConnectionFactory.CloseConection(con, stmt, rs);
