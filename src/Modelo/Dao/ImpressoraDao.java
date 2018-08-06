@@ -61,7 +61,7 @@ public class ImpressoraDao {
         
         try {
             //stmt = con.prepareStatement("select * from Impressoras ");
-            stmt = con.prepareStatement("select idImp, numPat, numSut, serialImp, dataEnvio, obsDef, nomeTec, os, marca, nomeModelo from Impressoras inner join Tecnicos on tecnicoId = idTec inner join MarcaImp on marcaId = idMarca inner join ModeloImp on modeloId = idModelo");
+            stmt = con.prepareStatement("select * from view_ReadImpDao");
             rs = stmt.executeQuery();
             
             while(rs.next()){
