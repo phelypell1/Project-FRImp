@@ -33,4 +33,11 @@ public class StatusBeans {
     public void setNomeSts(String nomeSts) {
         this.nomeSts = nomeSts;
     }
+
+    @Override
+    public String toString() {
+        return getNomeSts();
+    }
+    
+    
 }

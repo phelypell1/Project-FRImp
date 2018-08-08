@@ -92,18 +92,11 @@ public class ImpressoraDao {
                 ModeloImpressoraBeans impModel = new ModeloImpressoraBeans();
                 impModel.setNomeModelo(rs.getString("nomeModelo"));
                 imp.setModeloImp(impModel);
-                
+              
                 //
                 StatusBeans status = new StatusBeans();
                 status.setNomeSts(rs.getString("nomeSts"));
                 imp.setStatusEnvio(status);
-                
-                
-                
-                
-                
-                
-                
                 
                 imps.add(imp);
             }

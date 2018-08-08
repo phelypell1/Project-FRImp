@@ -17,7 +17,7 @@ public class ImpressoraBeans {
  private String dataSaida;
  private String laudoTecnico;
  private String Busca;
- private String StatusEnvio;
+ private StatusBeans StatusEnvio;
  
  
  
@@ -252,15 +252,17 @@ public class ImpressoraBeans {
     /**
      * @return the StatusEnvio
      */
-    public String getStatusEnvio() {
+    public StatusBeans getStatusEnvio() {
         return StatusEnvio;
     }
 
     /**
      * @param StatusEnvio the StatusEnvio to set
      */
-    public void setStatusEnvio(String StatusEnvio) {
+    public void setStatusEnvio(StatusBeans StatusEnvio) {
         this.StatusEnvio = StatusEnvio;
     }
+
+    
 
 }
