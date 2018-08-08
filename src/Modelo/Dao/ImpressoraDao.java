@@ -9,6 +9,7 @@ import Connection.ConnectionFactory;
 import Modelo.Beans.ImpressoraBeans;
 import Modelo.Beans.MarcaImpressoraBeans;
 import Modelo.Beans.ModeloImpressoraBeans;
+import Modelo.Beans.StatusBeans;
 import Modelo.Beans.TecnicoBeans;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -61,7 +62,10 @@ public class ImpressoraDao {
         
         try {
             //stmt = con.prepareStatement("select * from Impressoras ");
-            stmt = con.prepareStatement("select * from view_ReadImpDao");
+            stmt = con.prepareStatement("select idImp, numPat, numSut, serialImp, dataEnvio, obsDef, nomeTec, os, marca, nomeModelo, nomeSts from Impressoras inner join Tecnicos on tecnicoId = idTec \n" +
+"inner join MarcaImp on marcaId = idMarca \n" +
+"inner join ModeloImp on modeloId = idModelo\n" +
+"inner join Sts_imp on   idStatus = idSts");
             rs = stmt.executeQuery();
             
             while(rs.next()){
@@ -80,7 +84,7 @@ public class ImpressoraDao {
                 imp.setTecnico(tec);
                 //imp.setTecnico((TecnicoBeans) rs.getArray("nomeTec"));
                 //imp.setOs(rs.getInt("OS"));
-                //Serve para pegar o id e salvar na chave estrangeira
+                //Serve para pegar o id e converter em String e trazer o nome da chave estrangeira
                 MarcaImpressoraBeans impMarca = new MarcaImpressoraBeans();
                 impMarca.setNomeMarca(rs.getString("marca"));
                 imp.setMarcaImp(impMarca);
@@ -88,6 +92,18 @@ public class ImpressoraDao {
                 ModeloImpressoraBeans impModel = new ModeloImpressoraBeans();
                 impModel.setNomeModelo(rs.getString("nomeModelo"));
                 imp.setModeloImp(impModel);
+                
+                //
+                StatusBeans status = new StatusBeans();
+                status.setNomeSts(rs.getString("nomeSts"));
+                imp.setStatusEnvio(status);
+                
+                
+                
+                
+                
+                
+                
                 
                 imps.add(imp);
             }
