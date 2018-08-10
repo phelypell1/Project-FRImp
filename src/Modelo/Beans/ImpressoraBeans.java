@@ -17,10 +17,7 @@ public class ImpressoraBeans {
  private String dataSaida;
  private String laudoTecnico;
  private String Busca;
- 
- 
- 
- 
+ private StatusEnvioBeans StsEnvio;
 
     /**
      * @return the idImp
@@ -246,6 +243,20 @@ public class ImpressoraBeans {
      */
     public void setBusca(String Busca) {
         this.Busca = Busca;
+    }
+
+    /**
+     * @return the StsEnvio
+     */
+    public StatusEnvioBeans getStsEnvio() {
+        return StsEnvio;
+    }
+
+    /**
+     * @param StsEnvio the StsEnvio to set
+     */
+    public void setStsEnvio(StatusEnvioBeans StsEnvio) {
+        this.StsEnvio = StsEnvio;
     }
 
 }

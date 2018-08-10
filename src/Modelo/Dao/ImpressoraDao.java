@@ -9,6 +9,7 @@ import Connection.ConnectionFactory;
 import Modelo.Beans.ImpressoraBeans;
 import Modelo.Beans.MarcaImpressoraBeans;
 import Modelo.Beans.ModeloImpressoraBeans;
+import Modelo.Beans.StatusEnvioBeans;
 import Modelo.Beans.TecnicoBeans;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -40,6 +41,7 @@ public class ImpressoraDao {
             stmt.setString(12, imp.getDataFechamento());
             stmt.setString(13, imp.getDataSaida());
             stmt.setString(14, imp.getLaudoTecnico());
+            stmt.setInt(15, imp.getStsEnvio().getIdStsEnvio());
             
             stmt.executeUpdate();
 
@@ -92,6 +94,11 @@ public class ImpressoraDao {
                 ModeloImpressoraBeans impModel = new ModeloImpressoraBeans();
                 impModel.setNomeModelo(rs.getString("nomeModelo"));
                 imp.setModeloImp(impModel);
+                
+                StatusEnvioBeans envio = new StatusEnvioBeans();
+                envio.setNomeStsEnvio(rs.getString("nomeSts"));
+                imp.setStsEnvio(envio);
+                
                 
                 imps.add(imp);
             }
