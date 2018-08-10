@@ -9,7 +9,6 @@ import Connection.ConnectionFactory;
 import Modelo.Beans.ImpressoraBeans;
 import Modelo.Beans.MarcaImpressoraBeans;
 import Modelo.Beans.ModeloImpressoraBeans;
-import Modelo.Beans.StatusBeans;
 import Modelo.Beans.TecnicoBeans;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -26,7 +25,7 @@ public class ImpressoraDao {
         PreparedStatement stmt = null;
 
         try {
-            stmt = con.prepareStatement("insert into Impressoras(numPat, numSut, serialImp, dataEnvio, obsDef, tecnicoId, OS, marcaId,modeloId, dataCompraImp, dataEntrada,dataFechamento, dataSaida,laudoTec) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            stmt = con.prepareStatement("insert into Impressoras(numPat, numSut, serialImp, dataEnvio, obsDef, tecnicoId, OS, marcaId,modeloId, dataCompraImp, dataEntrada,dataFechamento, dataSaida,laudoTec, idStatus) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             stmt.setInt(1, imp.getNumPat());
             stmt.setInt(2, imp.getNumSut());
             stmt.setString(3, imp.getSerialImp());
@@ -41,6 +40,7 @@ public class ImpressoraDao {
             stmt.setString(12, imp.getDataFechamento());
             stmt.setString(13, imp.getDataSaida());
             stmt.setString(14, imp.getLaudoTecnico());
+            
             stmt.executeUpdate();
 
             JOptionPane.showMessageDialog(null, "Salvo com sucesso !");
@@ -92,11 +92,6 @@ public class ImpressoraDao {
                 ModeloImpressoraBeans impModel = new ModeloImpressoraBeans();
                 impModel.setNomeModelo(rs.getString("nomeModelo"));
                 imp.setModeloImp(impModel);
-              
-                //
-                StatusBeans status = new StatusBeans();
-                status.setNomeSts(rs.getString("nomeSts"));
-                imp.setStatusEnvio(status);
                 
                 imps.add(imp);
             }
