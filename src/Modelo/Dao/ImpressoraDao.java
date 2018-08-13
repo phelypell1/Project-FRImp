@@ -117,7 +117,7 @@ public class ImpressoraDao {
         PreparedStatement stmt = null;
 
         try {
-            stmt = con.prepareStatement("update Impressoras set numPat =?, numSut =?, serialImp=?, dataEnvio=?, obsDef=?, tecnicoid=?, OS=?, marcaid=?, modeloId=?, dataCompraImp=?, dataEntrada=?, dataFechamento =?, dataSaida =?, laudoTec=? where idImp = ?");
+            stmt = con.prepareStatement("update Impressoras set numPat =?, numSut =?, serialImp=?, dataEnvio=?, obsDef=?, tecnicoid=?, OS=?, marcaid=?, modeloId=?, dataCompraImp=?, dataEntrada=?, dataFechamento =?, dataSaida =?, laudoTec=?, idStatus=? where idImp = ?");
             stmt.setInt(1, imp.getNumPat());
             stmt.setInt(2, imp.getNumSut());
             stmt.setString(3, imp.getSerialImp());
@@ -132,7 +132,8 @@ public class ImpressoraDao {
             stmt.setString(12, imp.getDataFechamento());
             stmt.setString(13, imp.getDataSaida());
             stmt.setString(14, imp.getLaudoTecnico());
-            stmt.setInt(15,imp.getIdImp());
+            stmt.setInt(15, imp.getStsEnvio().getIdStsEnvio());
+            stmt.setInt(16,imp.getIdImp());
             stmt.executeUpdate();
 
             JOptionPane.showMessageDialog(null, "Atulizado com sucesso !");
