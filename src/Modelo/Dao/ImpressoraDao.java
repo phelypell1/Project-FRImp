@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
+
 public class ImpressoraDao {
 
     public void Create(ImpressoraBeans imp) {
