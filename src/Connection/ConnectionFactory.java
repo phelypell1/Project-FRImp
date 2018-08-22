@@ -13,7 +13,19 @@ public class ConnectionFactory {
     private static final String URL = "jdbc:mysql://127.0.0.1:3306/BancoDadosFr";
     private static final String USER = "root";
     private static final String PASS = "Fw38q1V7sN";
+    public ResultSet rs;
+    public PreparedStatement stmt;
 
+    public void executaSql(String sql){
+        ConnectionFactory.getConnection();
+        try {
+           stmt = (PreparedStatement) getConnection().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+           rs = stmt.executeQuery(sql);     
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao Buscar! " +e);
+        }
+    } 
+    
     public static Connection getConnection() {
         try {
             Class.forName(DRIVER);

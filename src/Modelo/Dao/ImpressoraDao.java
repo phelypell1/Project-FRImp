@@ -65,10 +65,7 @@ public class ImpressoraDao {
         
         try {
             //stmt = con.prepareStatement("select * from Impressoras ");
-            stmt = con.prepareStatement("select idImp, numPat, numSut, serialImp, dataEnvio, obsDef, nomeTec, os, marca, nomeModelo, nomeSts from Impressoras inner join Tecnicos on tecnicoId = idTec \n" +
-"inner join MarcaImp on marcaId = idMarca \n" +
-"inner join ModeloImp on modeloId = idModelo\n" +
-"inner join Sts_imp on   idStatus = idSts");
+            stmt = con.prepareStatement("select * from View_Read");
             rs = stmt.executeQuery();
             
             while(rs.next()){
@@ -79,14 +76,13 @@ public class ImpressoraDao {
                 imp.setNumPat(rs.getInt("numPat"));
                 imp.setNumSut(rs.getInt("numSut"));
                 imp.setSerialImp(rs.getString("serialImp"));
+                imp.setDataCompra(rs.getString("dataCompraImp"));
                 imp.setDataEnvio(rs.getString("dataEnvio"));
                 imp.setObsDefeito(rs.getString("obsDef"));
                 
                 TecnicoBeans tec = new TecnicoBeans();
                 tec.setNomeTec(rs.getString("nomeTec"));
                 imp.setTecnico(tec);
-                //imp.setTecnico((TecnicoBeans) rs.getArray("nomeTec"));
-                //imp.setOs(rs.getInt("OS"));
                 //Serve para pegar o id e converter em String e trazer o nome da chave estrangeira
                 MarcaImpressoraBeans impMarca = new MarcaImpressoraBeans();
                 impMarca.setNomeMarca(rs.getString("marca"));
@@ -105,7 +101,7 @@ public class ImpressoraDao {
             }
             
         } catch (SQLException ex) {
-           JOptionPane.showMessageDialog(null, "ERRO " +ex.getMessage());
+           JOptionPane.showMessageDialog(null, "ERRO AO CARREGAR TABELA \n " +ex.getMessage());
         }
         finally{
             ConnectionFactory.CloseConection(con, stmt, rs);

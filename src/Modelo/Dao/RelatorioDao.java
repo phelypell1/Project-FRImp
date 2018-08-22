@@ -3,6 +3,7 @@ package Modelo.Dao;
 
 import Connection.ConnectionFactory;
 import Modelo.Beans.ImpressoraBeans;
+import Modelo.Beans.StatusEnvioBeans;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,7 +26,9 @@ public class RelatorioDao {
         
         try {
             //stmt = con.prepareStatement("select * from Impressoras ");
-            stmt = con.prepareStatement("select idImp, OS,numPat, dataEnvio, dataEntrada, dataFechamento, dataSaida, obsDef, laudoTec  from Impressoras");
+            stmt = con.prepareStatement("select idImp,OS, numPat, dataEnvio, dataEntrada, dataFechamento, dataSaida, obsDef,laudoTec, nomeSts\n" +
+"from Impressoras\n" +
+"inner join Sts_imp on idSts = idStatus");
             rs = stmt.executeQuery();
             
             while(rs.next()){
@@ -41,6 +44,9 @@ public class RelatorioDao {
                 imp.setDataSaida(rs.getString("dataSaida"));
                 imp.setObsDefeito(rs.getString("obsDef"));
                 imp.setLaudoTecnico(rs.getString("laudoTec"));
+                StatusEnvioBeans impStatus = new StatusEnvioBeans();
+                impStatus.setNomeStsEnvio(rs.getString("nomeSts"));
+                imp.setStsEnvio(impStatus);
                 
                 imps.add(imp);
             }

@@ -40,6 +40,7 @@ public class ViewRelatorio extends javax.swing.JFrame {
                 relat.getDataSaida(),
                 relat.getObsDefeito(),
                 relat.getLaudoTecnico(),
+                relat.getStsEnvio(),
                 
             });
         }
@@ -62,6 +63,7 @@ public class ViewRelatorio extends javax.swing.JFrame {
                 relat.getDataSaida(),
                 relat.getObsDefeito(),
                 relat.getLaudoTecnico(),
+                relat.getStsEnvio(),
                 
             });
         }
@@ -103,11 +105,11 @@ public class ViewRelatorio extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Cod", "Os Serviço", "Patrimônio", "Data Envio", "Data Entrada", "Data Fechamento", "Saída", "Defeito", "Laudo Técnico"
+                "Cod", "Os Serviço", "Patrimônio", "Data Envio", "Data Entrada", "Data Fechamento", "Saída", "Defeito", "Laudo Técnico", "Status Manutenção"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
